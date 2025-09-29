@@ -69,14 +69,12 @@ struct ContentView: View {
             .padding([.horizontal, .bottom])
             .navigationTitle("Instafilter")
             .confirmationDialog("Select a filter", isPresented: $showingFilter) {
-                Button("Red Mask") { setFilter(CIFilter.blendWithRedMask()) }
                 Button("X-Ray") { setFilter(CIFilter.xRay()) }
-                Button("Darken Blend Mode") { setFilter(CIFilter.darkenBlendMode()) }
                 Button("Vibrance") { setFilter(CIFilter.vibrance()) }
-                Button("Color Clamp") { setFilter(CIFilter.colorClamp()) }
+                Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+                Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
+                Button("Vignette") { setFilter(CIFilter.vignette()) }
                 Button("Gloom") { setFilter(CIFilter.gloom()) }
-                Button("Light Tunnel") { setFilter(CIFilter.lightTunnel()) }
-                Button("Droste") { setFilter(CIFilter.droste()) }
                 Button("Cancel", role: .cancel) { }
             }
         }
