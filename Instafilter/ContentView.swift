@@ -40,6 +40,7 @@ struct ContentView: View {
                         ContentUnavailableView("No picture", systemImage: "photo.badge.plus", description: Text("Tap to import a photo"))
                     }
                 }.onChange(of: selectedItem, loadImage)
+                    .buttonStyle(.plain)
                 
                 Spacer()
                 
@@ -68,13 +69,14 @@ struct ContentView: View {
             .padding([.horizontal, .bottom])
             .navigationTitle("Instafilter")
             .confirmationDialog("Select a filter", isPresented: $showingFilter) {
-                Button("Palettize") { setFilter(CIFilter.palettize()) }
-                Button("Edges") { setFilter(CIFilter.edges()) }
+                Button("Red Mask") { setFilter(CIFilter.blendWithRedMask()) }
+                Button("X-Ray") { setFilter(CIFilter.xRay()) }
                 Button("Darken Blend Mode") { setFilter(CIFilter.darkenBlendMode()) }
                 Button("Vibrance") { setFilter(CIFilter.vibrance()) }
                 Button("Color Clamp") { setFilter(CIFilter.colorClamp()) }
                 Button("Gloom") { setFilter(CIFilter.gloom()) }
                 Button("Light Tunnel") { setFilter(CIFilter.lightTunnel()) }
+                Button("Droste") { setFilter(CIFilter.droste()) }
                 Button("Cancel", role: .cancel) { }
             }
         }
@@ -114,7 +116,7 @@ struct ContentView: View {
         
         filterCount += 1
         
-        if filterCount >= 20 {
+        if filterCount == 20 || filterCount == 30 || filterCount == 50 {
             requestReview()
         }
     }
